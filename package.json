@@ -1,0 +1,21 @@
+{
+  "name": "websearch-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://nana12@bitbucket.org/nana12/mvc_architecture_proj.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/nana12/mvc_architecture_proj#readme",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8"
+  }
+}

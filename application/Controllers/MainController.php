@@ -1,0 +1,78 @@
+<?php
+
+namespace Controllers;
+
+use Core\Controller;
+use Core\Http\Exceptions\NotFoundHttpException;
+use Core\Http\Request;
+use Helpers\UrlHelper;
+use Models\Url;
+use Services\UrlShortenService;
+
+class MainController extends Controller
+{
+    public function main()
+    {
+        $this->view->generate('main/main.php');
+    }
+
+    public function urlTable()
+    {
+        $model = new Url();
+
+        $urls = $model->getURls();
+
+        $this->view->generate('main/url-table.php', compact('urls'));
+    }
+
+    public function shortenUrl(Request $request)
+    {
+        $service = new UrlShortenService();
+        $model = new Url();
+
+        $url = $request->json('url');
+        $existing = $model->getByOriginalUrl($url);
+
+
+        if (!$existing) {
+
+            // TRANSACTION : CREATE URL -> GET UNIQUE ID -> GET UNIQUE A-Z ID -> UPDATE ROW
+            $created = $model->transaction(function () use ($model, $url, $service) {
+
+                $id = $model->add([
+                    'original_url' => $url,
+                    'created_date' => date('Y-m-d H:i:s')
+                ]);
+
+                $shortened = $service->shorten($id);
+
+                $model->update($id, $shortened);
+            });
+
+            if ($created) {
+                $existing = $model->getByOriginalUrl($url);
+            }
+
+        }
+        if ($existing) {
+            return $this->response->JsonResponse(['url' => UrlHelper::make($existing['shorten_url'])]);
+        }
+
+        return $this->response->JsonResponse('Something went wrong', 400);
+    }
+
+    public function getUrlBySlug(Request $request)
+    {
+        $model = new Url();
+
+        $shortened = $request->server('REQUEST_URI');
+        $item = $model->getByShortenedUrl($shortened);
+
+        if ($item) {
+            $this->response->redirect(UrlHelper::normalizeUrl($item['original_url']));
+        }
+
+        throw new NotFoundHttpException();
+    }
+
+}
