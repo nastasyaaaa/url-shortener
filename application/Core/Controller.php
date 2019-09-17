@@ -1,8 +1,8 @@
 <?php
 
-namespace Core;
+namespace App\Core;
 
-use Core\Http\Response;
+use App\Core\Http\Response;
 
 class Controller
 {
@@ -10,7 +10,6 @@ class Controller
 
     public function __construct()
     {
-        $this->view = new View();
         $this->response = new Response();
     }
 

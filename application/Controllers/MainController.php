@@ -1,19 +1,19 @@
 <?php
 
-namespace Controllers;
+namespace App\Controllers;
 
-use Core\Controller;
-use Core\Http\Exceptions\NotFoundHttpException;
-use Core\Http\Request;
-use Helpers\UrlHelper;
-use Models\Url;
-use Services\UrlShortenService;
+use App\Core\Controller;
+use App\Core\Http\Exceptions\NotFoundHttpException;
+use App\Core\Http\Request;
+use App\Helpers\UrlHelper;
+use App\Models\Url;
+use App\Services\UrlShortenService;
 
 class MainController extends Controller
 {
     public function main()
     {
-        $this->view->generate('main/main.php');
+        return view('main.main');
     }
 
     public function urlTable()
@@ -22,7 +22,7 @@ class MainController extends Controller
 
         $urls = $model->getURls();
 
-        $this->view->generate('main/url-table.php', compact('urls'));
+        return view('main.url-table', compact('urls'));
     }
 
     public function shortenUrl(Request $request)

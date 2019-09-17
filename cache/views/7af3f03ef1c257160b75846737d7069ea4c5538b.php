@@ -1,8 +1,8 @@
-<?php include(VIEWPATH . '/layouts/head.php') ?>
-    <body>
+<?php $__env->startSection('content'); ?>
+
     <div class="ui container ">
 
-        <a  href="/table" class="ui button">URL List</a>
+        <a href="/table" class="ui button">URL List</a>
 
         <div class="ui segment">
             <h3 class="ui header">URL SHORTENER</h3>
@@ -13,7 +13,8 @@
                         Please enter a value with http(s)
                     </div>
 
-                    <input type="text" id="url" class="js-validate" data-validation="required url" placeholder="mysite.com">
+                    <input type="text" id="url" class="js-validate" data-validation="required url"
+                           placeholder="mysite.com">
 
                 </div>
                 <button class="ui button" id="add-url" type="submit">Shorten</button>
@@ -28,4 +29,5 @@
         </div>
     </div>
 
-<?php include(VIEWPATH . '/layouts/footer.php') ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\progs\OSPanel\domains\websearch-test\views/main/main.blade.php ENDPATH**/ ?>

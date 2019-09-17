@@ -1,19 +1,19 @@
 <?php
 
-use Core\Route;
-use Core\Http\Request;
+use App\Core\Route;
+use App\Core\Http\Request;
 
 
 $route = new Route();
 $request = new Request();
 
 
-$route->get('/', ['\Controllers\MainController', 'main']);
-$route->get('/table', ['\Controllers\MainController', 'urlTable']);
+$route->get('/', ['\App\Controllers\MainController', 'main']);
+$route->get('/table', ['\App\Controllers\MainController', 'urlTable']);
 
-$route->post('/make', ['\Controllers\MainController', 'shortenUrl']);
+$route->post('/make', ['\App\Controllers\MainController', 'shortenUrl']);
 
-$route->get('/{slug}', ['\Controllers\MainController', 'getUrlBySlug']);
+$route->get('/{slug}', ['\App\Controllers\MainController', 'getUrlBySlug']);
 
 
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Core;
+namespace App\Core;
 
-use Core\Http\Exceptions\NotFoundHttpException;
-use Core\Http\Request;
+use App\Core\Http\Exceptions\NotFoundHttpException;
+use App\Core\Http\Request;
 
 class Route
 {

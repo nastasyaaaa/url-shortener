@@ -14,3 +14,12 @@
         }
     </style>
 </head>
+<body>
+
+<?php echo $__env->yieldContent('content'); ?>
+
+
+<?php echo $__env->make('layouts.scripts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+</body>
+</html><?php /**PATH D:\progs\OSPanel\domains\websearch-test\views/layouts/layout.blade.php ENDPATH**/ ?>
