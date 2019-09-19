@@ -11,7 +11,7 @@ class UrlHelper
 
     private static function getProtocol()
     {
-        return $_SERVER['HTTP_SSL'] ? 'https' : 'http';
+        return !empty($_SERVER['HTTP_SSL']) ? 'https' : 'http';
     }
 
     public static function normalizeUrl ($url)

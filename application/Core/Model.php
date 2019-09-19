@@ -8,10 +8,10 @@ class Model
 
     public function __construct()
     {
-        $user = 'mysql';
-        $pass = 'mysql';
-        $host = 'localhost';
-        $dbName = 'url_shortener';
+        $host = config('database.host');
+        $user = config('database.username');
+        $pass = config('database.password');
+        $dbName = config('database.dbname');
 
         $dsn = "mysql:host=$host;dbname=$dbName;charset=utf8";
         $options = [
